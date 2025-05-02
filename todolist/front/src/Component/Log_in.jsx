@@ -23,6 +23,19 @@ function Log_in(){
        navigate("/");
     }).catch((err)=>{
      console.log(err);
+           var res=err.response;
+     if(res.status==404){
+       seterror("user not found")
+       setTimeout(() => {
+        seterror('')
+       },3000);
+     }
+     else if(res.status==401){
+       seterror("password is not match")
+              setTimeout(() => {
+        seterror('')
+       },3000);
+     }
     })
   }
   return (
